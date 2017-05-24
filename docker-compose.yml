@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  elasticsearch-imap:
+    depends_on:
+      - elasticsearch
+    build:
+      context: .
+      args:
+        VERSION: 1.1-es2.3
+    environment:
+      USERS: "comma,separated,list,of,emails"
+      PASSWORDS: "comma,separated,list,of,passwords"
+
+  elasticsearch:
+    image: elasticsearch:2
+    ports:
+      - 9200
+      - 9300
